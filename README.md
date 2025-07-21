@@ -2,6 +2,8 @@
 
 This is a FastAPI backend application with MySQL database integration and Twilio OTP authentication.
 
+An authentication system built using Twilio and FastAPI to login into webapp or mobile app using OTP authentication.
+
 ## Project Structure
 
 ```
@@ -164,4 +166,3 @@ Configure these in your `.env` file:
 - `is_verified` - Boolean flag for user verification status
 - `created_at` - User creation timestamp
 - `updated_at` - Last update timestamp
-"# harish-project-backend" 
