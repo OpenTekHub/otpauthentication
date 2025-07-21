@@ -164,3 +164,4 @@ Configure these in your `.env` file:
 - `is_verified` - Boolean flag for user verification status
 - `created_at` - User creation timestamp
 - `updated_at` - Last update timestamp
+"# harish-project-backend" 
