@@ -1,0 +1,42 @@
+# Environment variables
+.env
+
+# Python virtual environments
+venv/
+env/
+.venv/
+ENV/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Logs
+*.log
+
+# macOS system files
+.DS_Store
+
+# VSCode project settings
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+
+# MyPy cache
+.mypy_cache/
+
+# Coverage reports
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.spec
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
