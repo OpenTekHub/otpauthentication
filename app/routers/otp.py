@@ -12,7 +12,7 @@ def send_otp_route(data: OTPRequest):
     return send_otp(data.phone)
 
 @router.post("/verify-otp", response_model=Token, status_code=status.HTTP_200_OK )
-def verify_otp_route(phone: str = Query(..., example="+15551234567"), code: str = Query(..., example="123456")):
+def verify_otp_route(phone: str = Query(..., example="+91551234567"), code: str = Query(..., example="123456")):
     """Verify SMS OTP and issue JWT token if approved."""
     result = verify_otp(phone, code)
     if result["status"] == "approved":
