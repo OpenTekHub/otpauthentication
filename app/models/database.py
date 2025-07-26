@@ -27,6 +27,8 @@ def get_db():
 
 def init_db():
     from app.models.user import Base
+    # Drop all tables and recreate them (for development only!)
+    # Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
 
 def test_connection():
@@ -39,7 +41,7 @@ def test_connection():
         print(f" Database test failed: {e}")
         return False
 
-def create_user(phone_number: int, name: str, email: str):
+def create_user(phone_number: str, name: str, email: str):
     from app.models.user import UserORM, User
     
     db = SessionLocal()
@@ -69,7 +71,7 @@ def create_user(phone_number: int, name: str, email: str):
     finally:
         db.close()
 
-def get_user_by_phone(phone_number: int):
+def get_user_by_phone(phone_number: str):
     from app.models.user import UserORM, User
     
     db = SessionLocal()
