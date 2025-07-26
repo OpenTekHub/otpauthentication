@@ -19,7 +19,7 @@ def send_otp(phone: str):
 def verify_otp(phone: str, code: str):
     try:
         verification_check = (
-            client.verify
+            client.verify.v2
                   .services(settings.TWILIO_VERIFY_SERVICE_SID)
                   .verification_checks
                   .create(to=phone, code=code)
