@@ -1,9 +1,13 @@
-from dotenv import load_dotenv
-import os
+from pydantic_settings import BaseSettings
 
-load_dotenv()
+class Settings(BaseSettings):
+    TWILIO_ACCOUNT_SID: str
+    TWILIO_AUTH_TOKEN: str
+    TWILIO_VERIFY_SERVICE_SID: str
+    JWT_SECRET_KEY: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
-TWILIO_ACCOUNT_SID = os.getenv("TWILIO_ACCOUNT_SID")
-TWILIO_AUTH_TOKEN = os.getenv("TWILIO_AUTH_TOKEN")
-TWILIO_VERIFY_SERVICE_SID = os.getenv("TWILIO_VERIFY_SERVICE_SID")
+    class Config:
+        env_file = ".env"
 
+settings = Settings()
