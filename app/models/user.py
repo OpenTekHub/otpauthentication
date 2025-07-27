@@ -14,26 +14,4 @@ class UserORM(Base):
     name = Column(String(255), nullable=False)
     email = Column(String(255), nullable=False, unique=True)
 
-# Pydantic Models for API validation and data handling
-class User(BaseModel):
-    id: Optional[int] = None
-    phone_number: str  
-    name: str
-    email: EmailStr
-    
-    class Config:
-        from_attributes = True  # For Pydantic v2
 
-class UserCreate(BaseModel):
-    phone_number: str  
-    name: str
-    email: EmailStr
-
-class UserResponse(BaseModel):
-    id: int
-    phone_number: str
-    name: str
-    email: str
-    
-    class Config:
-        from_attributes = True

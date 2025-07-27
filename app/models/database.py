@@ -1,7 +1,11 @@
+from pathlib import Path
 from sqlalchemy import create_engine, text, select
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, Session
 import os
 from dotenv import load_dotenv
+from app.models.user import Base
+from app.schemas.user_schemas import User
+from app.models.user import UserORM
 
 load_dotenv()
 
@@ -26,7 +30,6 @@ def get_db():
         db.close()
 
 def init_db():
-    from app.models.user import Base
     # Drop all tables and recreate them (for development only!)
     # Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
@@ -41,10 +44,7 @@ def test_connection():
         print(f" Database test failed: {e}")
         return False
 
-def create_user(phone_number: str, name: str, email: str):
-    from app.models.user import UserORM, User
-    
-    db = SessionLocal()
+def create_user(db:Session,phone_number: str, name: str, email: str):
     try:
         db_user = UserORM(
             phone_number=phone_number,
@@ -68,13 +68,9 @@ def create_user(phone_number: str, name: str, email: str):
     except Exception as e:
         db.rollback()
         raise e
-    finally:
-        db.close()
 
-def get_user_by_phone(phone_number: str):
-    from app.models.user import UserORM, User
-    
-    db = SessionLocal()
+
+def get_user_by_phone(db:Session,phone_number: str):
     try:
         stmt = select(UserORM).where(UserORM.phone_number == phone_number)
         result = db.execute(stmt)
@@ -90,5 +86,5 @@ def get_user_by_phone(phone_number: str):
             return user
         return None
         
-    finally:
-        db.close()
+    except Exception as e:
+        raise e
