@@ -8,9 +8,9 @@ router = APIRouter(prefix="/otp", tags=["Otp"])
 
 @router.post("/send-otp")
 def send_otp_route(request: Request, phone: str = Query(...)):
-    # Simple rate limiting: 3 OTP requests per 5 minutes
+    # Simple rate limiting: 4 OTP requests per 5 minutes
     client_ip = get_client_ip(request)
-    check_otp_rate_limit(phone, client_ip, limit=5, window=300)
+    check_otp_rate_limit(phone, client_ip, limit=4, window=300)
     
     return send_otp(phone)
 
@@ -18,7 +18,7 @@ def send_otp_route(request: Request, phone: str = Query(...)):
 def verify_otp_route(request: Request, phone: str = Query(...), code: str = Query(...)):
     # Simple rate limiting: 5 verify attempts per 5 minutes
     client_ip = get_client_ip(request)
-    check_otp_rate_limit(phone, client_ip, limit=8, window=300)
+    check_otp_rate_limit(phone, client_ip, limit=5, window=300)
     
     result = verify_otp(phone, code)
 
