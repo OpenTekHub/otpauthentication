@@ -53,13 +53,6 @@ TWILIO_PHONE_NUMBER=your_twilio_phone_number
 # Database URL (PostgreSQL)
 DATABASE_URL=postgresql://<username>:<password>@<host>/<database>?sslmode=require&channel_binding=require
 ```
-Example using your provided Neon database URL:
-```
-env
-Copy
-Edit
-DATABASE_URL=postgresql://neondb_owner:npg_MB1yg6ntVkpQ@ep-wild-recipe-a180r8nb-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
-```
 
 4️⃣ Start the Application
 Run the FastAPI server:
